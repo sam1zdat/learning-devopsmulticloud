@@ -371,6 +371,3 @@ Dans ce TP avancé, nous avons appris à installer Git, créer un fork d'un dép
 - [Documentation de GitLab](https://docs.gitlab.com/)
 
 ---
-
-
-Ce TP détaillé devrait vous permettre de comprendre et de mettre en pratique les concepts avancés de la gestion des sources avec Git. Si vous avez des questions ou rencontrez des problèmes, n'hésitez pas à demander de l'aide !
