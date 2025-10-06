@@ -66,7 +66,7 @@ Dans ce TP avancé, nous allons explorer les concepts avancés de la gestion des
      ![alt text](image-3.png)
      - Changer l'URL du dépôt distant pour utiliser SSH:
      ```bash
-     git remote set-url origin git@github.com:sam1zdat/eShopOnWeb.git
+     git remote set-url origin git@github.com:<votre-utilisateur/eShopOnWeb.git
      ```
      - Vérifier que l'URL du dépôt distant a été changé
      ```bash
@@ -80,11 +80,6 @@ Dans ce TP avancé, nous allons explorer les concepts avancés de la gestion des
      - Collez votre clé SSH dans le champ "Key".
      - Donnez un titre à votre clé (par exemple, "Mon ordinateur personnel").
      - Cliquez sur "Add key".
-
-2. **Configurer l'authentification HTTPS :**
-   - Configurez votre nom d'utilisateur et mot de passe pour Git :
-     ```bash
-     git config --global credential.helper store
      ```
 
 ### Étape 5 : Création et gestion des branches
@@ -376,5 +371,6 @@ Dans ce TP avancé, nous avons appris à installer Git, créer un fork d'un dép
 - [Documentation de GitLab](https://docs.gitlab.com/)
 
 ---
+
 
 Ce TP détaillé devrait vous permettre de comprendre et de mettre en pratique les concepts avancés de la gestion des sources avec Git. Si vous avez des questions ou rencontrez des problèmes, n'hésitez pas à demander de l'aide !
