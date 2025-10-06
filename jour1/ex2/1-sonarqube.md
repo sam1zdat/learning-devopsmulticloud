@@ -141,7 +141,7 @@ docker-compose logs -f sonarqube
 # Attendre que SonarQube soit complètement démarré (2-3 minutes)
 # Le message "SonarQube is up" doit apparaître dans les logs
 ```
-
+ssh -L 9000:localhost:9000 nom_utilisateur@adresse_ip_de_la_vm
 4. **Accéder et configurer SonarQube :**
 - Ouvrez votre navigateur : **http://localhost:9000**
 - Identifiez-vous avec :
@@ -447,5 +447,6 @@ dotnet --list-sdks
 - [ ] Rapport de build généré
 
 **Temps total estimé du labs : 2-3 heures**
+
 
 Ce labs complet vous guide à travers toutes les étapes, de l'installation des outils à l'analyse détaillée des résultats. Bonne analyse !
