@@ -263,7 +263,7 @@ echo "=== TEST MANUEL ==="
 
 # Étape 1: Démarrer l'analyse
 echo "1. Démarrage analyse..."
-dotnet-sonarscanner begin /k:"eshoponweb-analysis" /d:sonar.host.url="http://localhost:9000" /d:sonar.login="sqp_ca2467"
+dotnet-sonarscanner begin /k:"eshoponweb-analysis" /d:sonar.host.url="http://localhost:9000" /d:sonar.login="votre-token"
 
 # Étape 2: Build
 echo "2. Build..."
@@ -271,7 +271,7 @@ dotnet build eShopOnWeb.sln
 
 # Étape 3: Finaliser
 echo "3. Finalisation..."
-dotnet-sonarscanner end /d:sonar.login="sqp_ca2467"
+dotnet-sonarscanner end /d:sonar.login="votre-token"
 
 echo "=== TEST TERMINÉ ==="
 ```
@@ -450,3 +450,4 @@ dotnet --list-sdks
 
 
 Ce labs complet vous guide à travers toutes les étapes, de l'installation des outils à l'analyse détaillée des résultats. Bonne analyse !
+
