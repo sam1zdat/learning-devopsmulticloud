@@ -150,7 +150,7 @@ data "azurerm_resource_group" "existing" {
 
 # Plan App Service
 resource "azurerm_service_plan" "main" {
-  name                = "asp-${var.project_name}-${var.environment}"
+  name                = "asp-${var.project_name}-ahmedxyz123"
   resource_group_name = data.azurerm_resource_group.existing.name
   location            = data.azurerm_resource_group.existing.location
   os_type             = "Linux"
@@ -165,7 +165,7 @@ resource "azurerm_service_plan" "main" {
 
 # Application Web
 resource "azurerm_linux_web_app" "main" {
-  name                = "app-${var.project_name}-${var.environment}-${random_string.suffix.result}"
+  name                = "app-${var.project_name}-${var.environment}-ahmedxyz123"
   resource_group_name = data.azurerm_resource_group.existing.name
   location            = data.azurerm_resource_group.existing.location
   service_plan_id     = azurerm_service_plan.main.id
@@ -603,4 +603,5 @@ name = "app-${var.project_name}-${var.environment}-${random_string.suffix.result
 - [ ] Code poussé sur la branche `main`
 - [ ] GitHub Action s'exécute avec succès
 - [ ] Application web accessible via l'URL générée
+
 
