@@ -64,20 +64,17 @@ jobs:
           -out=tfplan
       working-directory: ./terraform
 
-    # Étape 9: Output des résultats
-    - name: Terraform Outputs
+    # Étape 8: Terraform Apply (seulement sur main et déclenchement manuel)
+    - name: Terraform Apply
       if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
-      shell: bash
-      run: |
-        echo -e "WEBAPP_NAME=$(terraform output -raw webapp_name)" >> $GITHUB_ENV
+      id: apply
+      run: terraform apply -auto-approve tfplan
       working-directory: ./terraform
 
     # Étape 9: Output des résultats
     - name: Terraform Outputs
       if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
-      shell: bash
-      run: |
-        echo "WEBAPP_NAME=$(terraform output -raw webapp_name)" >> $GITHUB_ENV
+      run: terraform output
       working-directory: ./terraform
 
   # Job de vérification
@@ -99,7 +96,7 @@ jobs:
     - name: Verify Web App
       run: |
         az webapp show \
-          --name ${{ env.WEBAPP_NAME }} \
+          --name ${{ env.AZURE_WEBAPP_NAME }} \
           --resource-group ${{ env.AZURE_RESOURCE_GROUP }} \
           --query "{Name:name, State:state, URL:defaultHostName}" \
           --output table
@@ -107,7 +104,7 @@ jobs:
     - name: Test Web App URL
       run: |
         URL=$(az webapp show \
-          --name ${{ env.WEBAPP_NAME }} \
+          --name ${{ env.AZURE_WEBAPP_NAME }} \
           --resource-group ${{ env.AZURE_RESOURCE_GROUP }} \
           --query "defaultHostName" -o tsv)
         echo "🌐 Application URL: https://$URL"
