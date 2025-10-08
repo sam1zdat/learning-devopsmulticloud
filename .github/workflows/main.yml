@@ -64,11 +64,12 @@ jobs:
           -out=tfplan
       working-directory: ./terraform
 
-    # Étape 8: Terraform Apply (seulement sur main et déclenchement manuel)
-    - name: Terraform Apply
+    # Étape 9: Output des résultats
+    - name: Terraform Outputs
       if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
-      id: apply
-      run: terraform apply -auto-approve tfplan
+      shell: bash
+      run: |
+        echo -e "WEBAPP_NAME=$(terraform output -raw webapp_name)" >> $GITHUB_ENV
       working-directory: ./terraform
 
     # Étape 9: Output des résultats
