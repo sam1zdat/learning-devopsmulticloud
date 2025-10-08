@@ -74,7 +74,8 @@ jobs:
     # Étape 9: Output des résultats
     - name: Terraform Outputs
       if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
-      run: terraform output
+      run: |
+        echo "WEBAPP_NAME=$(terraform output -raw webapp_name)" >> $GITHUB_ENV
       working-directory: ./terraform
 
   # Job de vérification
@@ -96,7 +97,7 @@ jobs:
     - name: Verify Web App
       run: |
         az webapp show \
-          --name ${{ env.AZURE_WEBAPP_NAME }} \
+          --name ${{ env.WEBAPP_NAME }} \
           --resource-group ${{ env.AZURE_RESOURCE_GROUP }} \
           --query "{Name:name, State:state, URL:defaultHostName}" \
           --output table
@@ -104,7 +105,7 @@ jobs:
     - name: Test Web App URL
       run: |
         URL=$(az webapp show \
-          --name ${{ env.AZURE_WEBAPP_NAME }} \
+          --name ${{ env.WEBAPP_NAME }} \
           --resource-group ${{ env.AZURE_RESOURCE_GROUP }} \
           --query "defaultHostName" -o tsv)
         echo "🌐 Application URL: https://$URL"
