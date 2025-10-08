@@ -603,5 +603,3 @@ name = "app-${var.project_name}-${var.environment}-${random_string.suffix.result
 - [ ] Code poussé sur la branche `main`
 - [ ] GitHub Action s'exécute avec succès
 - [ ] Application web accessible via l'URL générée
-
-**Félicitations!** 🎉 Vous avez maintenant un pipeline CI/CD complet qui déploie automatiquement sur Azure à chaque push!
