@@ -34,7 +34,7 @@ resource "azurerm_linux_web_app" "main" {
 
   app_settings = {
     "WEBSITE_NODE_DEFAULT_VERSION" = "18-lts"
-    "NODE_ENV" = "production"
+    "NODE_ENV"                     = "production"
   }
 
   tags = {
