@@ -1,0 +1,111 @@
+name: Deploy Azure Web App
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:  # Déclenchement manuel
+
+env:
+  AZURE_WEBAPP_NAME: 'app-monapp-dev'
+  AZURE_RESOURCE_GROUP: 'ahmed-rg'  # Resource Group existant
+  TERRAFORM_VERSION: '1.5.0'
+
+jobs:
+  terraform:
+    name: 'Terraform Plan/Apply'
+    runs-on: ubuntu-latest
+    environment: production
+    
+    steps:
+    # Étape 1: Checkout du code
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    # Étape 2: Configuration Azure Login
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    # Étape 3: Setup Terraform
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: ${{ env.TERRAFORM_VERSION }}
+
+    # Étape 4: Terraform Init
+    - name: Terraform Init
+      id: init
+      run: terraform init
+      working-directory: ./terraform
+
+    # Étape 5: Terraform Format
+    - name: Terraform Format
+      id: fmt
+      run: terraform fmt -check
+      working-directory: ./terraform
+
+    # Étape 6: Terraform Validate
+    - name: Terraform Validate
+      id: validate
+      run: terraform validate -no-color
+      working-directory: ./terraform
+
+    # Étape 7: Terraform Plan
+    - name: Terraform Plan
+      id: plan
+      run: |
+        terraform plan \
+          -var="existing_resource_group_name=${{ env.AZURE_RESOURCE_GROUP }}" \
+          -var="project_name=monapp" \
+          -var="environment=dev" \
+          -out=tfplan
+      working-directory: ./terraform
+
+    # Étape 8: Terraform Apply (seulement sur main et déclenchement manuel)
+    - name: Terraform Apply
+      if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+      id: apply
+      run: terraform apply -auto-approve tfplan
+      working-directory: ./terraform
+
+    # Étape 9: Output des résultats
+    - name: Terraform Outputs
+      if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+      run: terraform output
+      working-directory: ./terraform
+
+  # Job de vérification
+  verify:
+    name: 'Verify Deployment'
+    runs-on: ubuntu-latest
+    needs: terraform
+    if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Verify Web App
+      run: |
+        az webapp show \
+          --name ${{ env.AZURE_WEBAPP_NAME }} \
+          --resource-group ${{ env.AZURE_RESOURCE_GROUP }} \
+          --query "{Name:name, State:state, URL:defaultHostName}" \
+          --output table
+
+    - name: Test Web App URL
+      run: |
+        URL=$(az webapp show \
+          --name ${{ env.AZURE_WEBAPP_NAME }} \
+          --resource-group ${{ env.AZURE_RESOURCE_GROUP }} \
+          --query "defaultHostName" -o tsv)
+        echo "🌐 Application URL: https://$URL"
+        curl -s -I "https://$URL" | head -n 1
