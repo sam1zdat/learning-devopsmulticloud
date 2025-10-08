@@ -74,8 +74,7 @@ jobs:
     # Étape 9: Output des résultats
     - name: Terraform Outputs
       if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
-      run: |
-        echo "WEBAPP_NAME=$(terraform output -raw webapp_name)" >> $GITHUB_ENV
+      run: echo "WEBAPP_NAME=$(terraform output -raw webapp_name)" >> $GITHUB_ENV
       working-directory: ./terraform
 
   # Job de vérification
