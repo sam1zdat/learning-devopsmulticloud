@@ -66,7 +66,7 @@ az login
 az account list --output table
 
 # Définir l'abonnement par défaut
-az account set --subscription "VOTRE-SUBSCRIPTION-ID"
+az account set --subscription "14abf4c6-3fa0-47af-b4a5-a7fbf3d5a47c"
 
 # Vérifier la connexion
 az account show
@@ -603,3 +603,4 @@ name = "app-${var.project_name}-${var.environment}-${random_string.suffix.result
 - [ ] Code poussé sur la branche `main`
 - [ ] GitHub Action s'exécute avec succès
 - [ ] Application web accessible via l'URL générée
+
