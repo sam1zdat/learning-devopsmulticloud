@@ -7,6 +7,42 @@ Créer une image container manuellement est possible, mais cela nécessite des p
 
 ---
 
+## 🐳 Installation de docker
+
+### 1. Mettre à jour les paquets
+```bash
+sudo apt update
+sudo apt upgrade -y
+```
+
+### 2. Installer les dépendances
+```bash
+sudo apt install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+```
+
+### 3. Ajouter la clé GPG officielle de Docker
+```bash
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+```
+
+### 4. Ajouter le repository Docker
+```bash
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+
+### 5. Installer Docker Engine
+```bash
+sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
 ## Étape 1 : Connexion et Configuration Initiale
 
 ### 1.1 Connexion au Serveur
@@ -409,4 +445,5 @@ Vous avez réussi à :
 
 
 Votre site web est maintenant conteneurisé et prêt pour le déploiement ! 🐳🚀
+
 
