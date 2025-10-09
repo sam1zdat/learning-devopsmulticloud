@@ -5,7 +5,6 @@
 - Maîtriser les commandes Docker essentielles
 - Créer et gérer des conteneurs
 - Construire des images personnalisées
-- Utiliser Docker Compose
 
 ---
 
@@ -157,5 +156,6 @@ docker run -d --name my-app -p 5000:5000 mon-app-flask
 # Tester l'application
 curl http://localhost:5000
 ```
+
 
 ---
