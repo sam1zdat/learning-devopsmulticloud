@@ -377,7 +377,7 @@ produce_all_products.1.6xkd21qo13ru@ubuntu-4gb-he11-8    | 80 http://vegetables:
 
 ### 📊 **Flux de Données :**
 
-```
+
 Utilisateur → produce_all_products:8080 → (parallèlement)
                                       ├→ produce_fruit:80 (1360 octets)
                                       └→ produce_vegetables:80 (2542 octets)
@@ -699,5 +699,6 @@ Vous avez réussi à :
 
 
 La stack "produce" est maintenant opérationnelle avec 7 conteneurs répartis en 3 services, offrant résilience et scalabilité grâce à Docker Swarm ! 🎉
+
 
 
