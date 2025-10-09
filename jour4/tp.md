@@ -124,6 +124,8 @@ docker inspect -f "$showSize" widgetfactory:0.1
 docker inspect -f "$showLayers" widgetfactory:0.1
 
 # 🔍 Comparaison avec l'image de base httpd:2.4
+# récipérer l'image s'il n'existe pas en local
+docker pull httpd:2.4
 docker inspect -f "$showLayers" httpd:2.4
 
 # 💡 OBSERVATION :
@@ -445,4 +447,6 @@ Vous avez réussi à :
 
 
 Votre site web est maintenant conteneurisé et prêt pour le déploiement ! 🐳🚀
+
+
 
