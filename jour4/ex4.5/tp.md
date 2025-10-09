@@ -48,13 +48,13 @@
    - Allez sur [https://portal.azure.com](https://portal.azure.com)
    - Connectez-vous avec votre compte
 
-2. **Créez un groupe de ressources** :
+2. **Créez un groupe de ressources (étape optionnel)** :
    - Cherchez **"Resource Groups"** (Groupes de ressources)
    - Cliquez sur **"+ Create"** (Créer)
    - Nom : `rg-eshoponweb-NOM` (remplacez NOM par votre alias)
    - Cliquez sur **"Review + Create"** → **"Create"**
 
-3. **Ouvrez Azure Cloud Shell** :
+3. **Ouvrez Azure Cloud Shell(étape optionnel)** :
    - Cliquez sur l'icône Cloud Shell dans le portail
    - Choisissez **"Bash"** comme environnement
 
@@ -68,7 +68,7 @@
    az ad sp create-for-rbac --name GH-Action-eshoponweb --role contributor --scopes /subscriptions/12345678-1234-1234-1234-123456789012/resourceGroups/rg-eshoponweb-alice --sdk-auth
    ```
 
-5. **Copiez le résultat JSON** qui ressemble à :
+5. **Le formateur vous fournira un fichier JSON** qui ressemble à :
    ```json
    {
      "clientId": "<GUID>",
@@ -79,12 +79,7 @@
    }
    ```
 
-6. **Enregistrez le fournisseur App Service** (si pas déjà fait) :
-   ```bash
-   az provider register --namespace Microsoft.Web
-   ```
-
-7. **Ajoutez les credentials comme secret GitHub** :
+6. **Ajoutez les credentials comme secret GitHub** :
    - Retournez sur votre dépôt GitHub
    - Allez dans **Settings** → **Secrets and variables** → **Actions**
    - Cliquez sur **"New repository secret"**
@@ -105,10 +100,10 @@
    - Cette section définit les déclencheurs du workflow
 
 3. **Modifiez la section `env`** :
-   - `RESOURCE-GROUP` : utilisez le même nom que votre groupe de ressources
-   - `LOCATION` : choisissez votre région Azure (ex: "francecentral", "westeurope")
-   - `SUBSCRIPTION-ID` : votre ID d'abonnement Azure
-   - `WEBAPP-NAME` : un nom unique pour votre application web
+   - `RESOURCE-GROUP` : utilisez le même nom que votre groupe de ressources (ex:"ahmed-rg", "alexandre-rg", "francois-rg", "thierry-rg" ...)
+   - `LOCATION` : choisissez votre région Azure (ex: "westeurope")
+   - `SUBSCRIPTION-ID` : votre ID d'abonnement Azure (ex: "14abf4c6-3fa0-47af-b4a5-a7fbf3d5a47c")
+   - `WEBAPP-NAME` : un nom unique pour votre application web(ex: eshoponweb-ahmed-123)
 
    **Exemple** :
    ```yaml
