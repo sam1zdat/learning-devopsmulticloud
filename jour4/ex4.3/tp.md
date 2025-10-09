@@ -98,6 +98,34 @@ docker network ls
 ---
 
 ## Étape 2 : Construction et Déploiement de la Stack d'Application
+ 🐳 Docker Stack - Explication
+
+**Docker Stack** est une fonctionnalité de Docker qui permet de déployer et gérer des applications complètes multi-conteneurs définies dans un fichier Docker Compose sur un **Docker Swarm** (cluster Docker).
+
+## 📋 Définition
+
+- **Docker Stack** : Outil pour déployer des applications composées de multiples services sur un cluster Swarm
+- **Docker Swarm** : Orchestrateur natif de Docker pour créer des clusters
+- **Stack** : Ensemble de services, réseaux et volumes définis dans un fichier Compose
+
+## 🆚 Différence avec Docker Compose
+
+| Docker Compose | Docker Stack |
+|----------------|--------------|
+| Pour environnements de développement | Pour production avec Swarm |
+| Sur une seule machine | Sur un cluster de machines |
+| `docker-compose up` | `docker stack deploy` |
+| Fichier `docker-compose.yml` | Fichier `docker-compose.yml` compatible |
+
+## 🚀 Commande expliquée
+
+```bash
+docker stack deploy -c produce.yml produce
+```
+
+- `docker stack deploy` : Déploie une stack
+- `-c produce.yml` : Spécifie le fichier compose (`-c` = compose)
+- `produce` : Nom de la stack
 
 ### 2.1 Création de la Structure du Projet
 ```bash
@@ -686,5 +714,6 @@ Vous avez réussi à :
 4. ✅ Déployer et tester l'application
 5. ✅ Mettre à l'échelle les services horizontalement
 6. ✅ Gérer et surveiller la stack
+
 
 La stack "produce" est maintenant opérationnelle avec 7 conteneurs répartis en 3 services, offrant résilience et scalabilité grâce à Docker Swarm ! 🎉
