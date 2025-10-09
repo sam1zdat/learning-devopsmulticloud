@@ -15,16 +15,10 @@ Créer une image container manuellement est possible, mais cela nécessite des p
 ssh root@<PUBLIC_IP_ADDRESS>
 ```
 créer cette structure:
-widget-factory-inc/
-├── Dockerfile          # Définition de l'image Docker
-├── web/               # Contenu du site web
-│   ├── index.html
-│   ├── quote.css          
-│   ├── support.html
-│   ├── widgets.css
-│   └── images/
+<img width="684" height="261" alt="image" src="https://github.com/user-attachments/assets/07a46aa3-f951-41d8-a327-40e5f6dd60bf" />
 
-```bash
+Copier en local le dossier widget-factory-inc.
+
 # 📁 Navigation dans le répertoire du projet
 cd widget-factory-inc
 
@@ -415,3 +409,4 @@ Vous avez réussi à :
 
 
 Votre site web est maintenant conteneurisé et prêt pour le déploiement ! 🐳🚀
+
