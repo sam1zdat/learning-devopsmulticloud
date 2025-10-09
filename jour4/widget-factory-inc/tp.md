@@ -5,18 +5,6 @@ Créer une image container manuellement est possible, mais cela nécessite des p
 
 ## Architecture du Projet
 
-```
-widget-factory-inc/
-├── Dockerfile          # Définition de l'image Docker
-├── web/               # Contenu du site web
-│   ├── index.html
-│   ├── quote.css          
-│   ├── support.html
-│   ├── widgets.css
-│   └── images/
-└── README.md
-```
-
 ---
 
 ## Étape 1 : Connexion et Configuration Initiale
@@ -424,5 +412,6 @@ Vous avez réussi à :
 5. ✅ **Configurer l'environnement** avec WORKDIR
 6. ✅ **Exécuter et tester** un conteneur web
 7. ✅ **Analyser et optimiser** les constructions Docker
+
 
 Votre site web est maintenant conteneurisé et prêt pour le déploiement ! 🐳🚀
