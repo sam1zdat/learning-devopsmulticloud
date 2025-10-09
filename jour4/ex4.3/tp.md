@@ -290,24 +290,6 @@ Lancer dans un browser localhost:8080
 #   "fruits": ["apple", "banana", "orange"],
 #   "vegetables": ["carrot", "broccoli", "spinach"]
 # }
-
-# Test avec formatage JSON (si jq est installé)
-curl -s localhost:8080 | jq .
-
-# Test avec vérification HTTP détaillée
-curl -v localhost:8080
-
-# Test en boucle pour attendre que l'application soit prête
-for i in {1..30}; do
-    if curl -s localhost:8080 > /dev/null; then
-        echo "✅ Application ready!"
-        curl -s localhost:8080 | jq .
-        break
-    else
-        echo "⏳ Waiting for application... ($i/30)"
-        sleep 2
-    fi
-done
 ```
 
 ### 3.2 Vérification des Logs
@@ -717,4 +699,5 @@ Vous avez réussi à :
 
 
 La stack "produce" est maintenant opérationnelle avec 7 conteneurs répartis en 3 services, offrant résilience et scalabilité grâce à Docker Swarm ! 🎉
+
 
