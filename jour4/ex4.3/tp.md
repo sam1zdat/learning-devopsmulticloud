@@ -283,7 +283,7 @@ docker network ls | grep produce
 ### 3.1 Test de l'Endpoint Principal
 ```bash
 # Test de l'application 
-ouvrir localhost:8080
+Lancer dans un browser localhost:8080
 
 # Sortie attendue (format JSON) :
 # {
@@ -717,3 +717,4 @@ Vous avez réussi à :
 
 
 La stack "produce" est maintenant opérationnelle avec 7 conteneurs répartis en 3 services, offrant résilience et scalabilité grâce à Docker Swarm ! 🎉
+
