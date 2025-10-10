@@ -23,7 +23,6 @@ Créer un pipeline Jenkins qui:
 
 ## 🏗️ **Partie 1: Configuration de l'Environnement**
 
-
 ### **Étape 1.1: Préparation du Système**
 
 ```bash
@@ -157,6 +156,16 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
    - Username: `admin`
    - Password: `admin123` (pour le TP)
    - Email: `admin@example.com`
+pour accéder à la page de création d'utilisateur:
+Recherchez ces éléments visuels:
+
+Titre: "Create First Admin User"
+
+5 champs à remplir (username, password, etc.)
+
+Bouton: "Save and Continue"
+
+Option: "Skip and continue as admin" (NE PAS CLIQUER)
 
 ---
 
