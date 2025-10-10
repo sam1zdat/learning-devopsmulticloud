@@ -646,7 +646,7 @@ Voir le Jenkinsfile pour la configuration complète du pipeline.
 
 ### **Étape 5.1: Création du Token Docker Hub**
 
-1. **Aller sur:** https://hub.docker.com/settings/security
+1. **Aller sur:** https://hub.docker.com/settings/security et choisir "Personal access token"
 2. **Créer un nouveau token:**
    - Name: `jenkins-tp-token`
    - Permissions: **Read, Write, Delete**
